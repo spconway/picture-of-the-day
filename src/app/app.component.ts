@@ -1,10 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { DataService } from './service/data.service';
 
 @Component({
-  selector: 'app-root',
+  selector: 'pod-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
-  title = 'picture-of-the-day';
+export class AppComponent implements OnInit {
+  constructor(public dataService: DataService) {}
+
+  ngOnInit(): void {
+    this.dataService.init$().subscribe();
+  }
 }
